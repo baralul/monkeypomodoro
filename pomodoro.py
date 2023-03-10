@@ -107,11 +107,12 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                         report = json.load(file)
                 except json.decoder.JSONDecodeError:
                     report = []
+                hour = now.date().strftime("%H")  # %h gives the abbreviated month name for some reason
                 date = now.date().strftime("%d")
                 month = now.date().strftime("%m")
                 y, w, dy = now.isocalendar()
                 report.append({"activity": tasks[-1], "duration": m, "year": y, "month": month, "week": w, "date": date,
-                               "day": dy})
+                               "day": dy, "hour": hour})
                 with open("pomodoro_report.json", "w") as file:
                     json.dump(report, file, indent=4)
 
@@ -207,11 +208,12 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                         report = json.load(file)
                 except json.decoder.JSONDecodeError:
                     report = []
+                hour = now.date().strftime("%H")  # %h gives the abbreviated month name for some reason
                 date = now.date().strftime("%d")
                 month = now.date().strftime("%m")
                 y, w, dy = now.isocalendar()
                 report.append({"activity": tasks[-1], "duration": m, "year": y, "month": month, "week": w, "date": date,
-                               "day": dy})
+                               "day": dy, "hour": hour})
                 with open("pomodoro_report.json", "w") as file:
                     json.dump(report, file, indent=4)
 
