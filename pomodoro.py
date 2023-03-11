@@ -17,10 +17,11 @@ def signal_handler():  # (signum, frame) < read more about this
 
 
 def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, number_of_cycle, custom_tab1):
+
+    # Configuration I guess
     spotify = "https://open.spotify.com/"
     monkey_type = "https://monkeytype.com/"
     google_calendar = "https://calendar.google.com/calendar/u/1/r/customday"
-
     duration = duration_in_minute * 60
     short_break = short_break_in_minute * 60
     long_break = long_break_in_minute * 60
@@ -107,7 +108,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                         report = json.load(file)
                 except json.decoder.JSONDecodeError:
                     report = []
-                hour = now.date().strftime("%H")  # %h gives the abbreviated month name for some reason
+                hour = now.time().strftime("%H")  # %h gives the abbreviated month name for some reason
                 date = now.date().strftime("%d")
                 month = now.date().strftime("%m")
                 y, w, dy = now.isocalendar()
@@ -208,7 +209,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                         report = json.load(file)
                 except json.decoder.JSONDecodeError:
                     report = []
-                hour = now.date().strftime("%H")  # %h gives the abbreviated month name for some reason
+                hour = now.time().strftime("%H")  # %h gives the abbreviated month name for some reason
                 date = now.date().strftime("%d")
                 month = now.date().strftime("%m")
                 y, w, dy = now.isocalendar()
@@ -327,12 +328,20 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                 time.sleep(60)
 
 
-custom_tab = "file:///home/bara/Documents/Guitar%20stuff/eddie%20van%20der%20meer/learned/Ed_Sheeran_-_Perfect.pdf"  # "insert_a_website_url"
+# "insert_a_website_url"
+custom_tab = "file:///home/bara/Documents/Guitar%20stuff/eddie%20van%20der%20meer/learned/Ed_Sheeran_-_Perfect.pdf"
 none = "none"
 pomodoro(25, 5, 25, 2, none)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"link",)
 
 """
+To fix:
+- nothing to fix
+
 Feature to add:
 - option to pause.
+- github-style heatmap data representation.
 
+Comments:
+now.date() returns only the date without any time information so strftime("%H") will always be "00". 
+instead use time.now() which returns a datetime object that contains both the date and time information
 """

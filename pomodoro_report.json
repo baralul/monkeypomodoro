@@ -117,5 +117,25 @@
         "date": "11",
         "day": 6,
         "hour": "00"
+    },
+    {
+        "activity": "anki kotoba",
+        "duration": 25,
+        "year": 2023,
+        "month": "03",
+        "week": 10,
+        "date": "11",
+        "day": 6,
+        "hour": "00"
+    },
+    {
+        "activity": "anki kotoba",
+        "duration": 25,
+        "year": 2023,
+        "month": "03",
+        "week": 10,
+        "date": "11",
+        "day": 6,
+        "hour": "00"
     }
 ]
