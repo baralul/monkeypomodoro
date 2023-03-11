@@ -1,8 +1,9 @@
 import json
 
+
 def calculate_activity_duration(activity="any", year="any", month="any", week="any", date="any", day="any", hour="any"):
     # read data from a JSON file
-    with open("../monkeypomodoros/pomodoro_report.json", "r") as f:
+    with open("pomodoro_report.json", "r") as f:
         data = json.load(f)
 
     # create a dictionary to store the total duration for each activity
@@ -33,7 +34,14 @@ def calculate_activity_duration(activity="any", year="any", month="any", week="a
     # return the activity duration dictionary
     return activity_duration
 
-calculate_activity_duration()
+
+print(calculate_activity_duration(activity="any",
+                                  year="any",
+                                  month="any",
+                                  week="any",
+                                  date="any",
+                                  day="any",
+                                  hour="any"))
 
 """
 or 

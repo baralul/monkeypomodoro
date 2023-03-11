@@ -8,11 +8,11 @@ import signal
 import os
 import json
 
-# this shit is False now
+# this is False now
 pyautogui.FAILSAFE = False
 
 
-def signal_handler():  # (signum, frame) < read more about this shit
+def signal_handler():  # (signum, frame) < read more about this
     pass
 
 
