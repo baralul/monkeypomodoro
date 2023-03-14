@@ -21,7 +21,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
     # Configuration I guess
     spotify = "https://open.spotify.com/"
     monkey_type = "https://monkeytype.com/"
-    google_calendar = "https://calendar.google.com/calendar/u/1/r/customday"
+    google_calendar = "https://calendar.google.com/calendar/u/0/r/week"
     duration = duration_in_minute * 60
     short_break = short_break_in_minute * 60
     long_break = long_break_in_minute * 60
@@ -31,17 +31,17 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
 
     for i in range(cycles):
 
-        # initializes the pygame stuff
+        # initializes the pygame & make mp3 and its length variabless
         pygame.mixer.init()
-        work_mp3 = pygame.mixer.Sound("/home/bara/Music/Pomodoro/time_to_work.mp3")
+        work_mp3 = pygame.mixer.Sound("monkeypomodoro/sounds/time_to_work.mp3")
         work_mp3_length = work_mp3.get_length()
-        break_mp3 = pygame.mixer.Sound("/home/bara/Music/Pomodoro/time_for_a_break.mp3")
+        break_mp3 = pygame.mixer.Sound("monkeypomodoro/sounds/time_for_a_break.mp3")
         break_mp3_length = break_mp3.get_length()
-        just_do_mp3 = pygame.mixer.Sound("/home/bara/Music/Pomodoro/just_do_it.mp3")
+        just_do_mp3 = pygame.mixer.Sound("monkeypomodoro/sounds/just_do_it.mp3")
         just_do_mp3_length = just_do_mp3.get_length()
 
         # audio prompt to enter a task
-        pygame.mixer.music.load("/home/bara/Music/Pomodoro/please_enter_a_task.mp3")
+        pygame.mixer.music.load("monkeypomodoro/sounds/please_enter_a_task.mp3")
         print(f"\rGood luck!", end="")
         pygame.mixer.music.set_volume(1)
         time.sleep(1)
@@ -69,13 +69,8 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                     # 1 second before rechecking the elapsed time
                     time.sleep(1)
 
-            # music etc
-            pygame.mixer.music.load("/home/bara/Music/Pomodoro/ganbatte.mp3")
-            pygame.mixer.music.set_volume(0.2)
-            pygame.mixer.music.play()
-            print(f"\rがんばってくださいね", end="")
-            time.sleep(2)
-            pygame.mixer.music.load("/home/bara/Music/Pomodoro/Ticking Digital Clock.mp3")
+            # ticking clock
+            pygame.mixer.music.load("monkeypomodoro/sounds/Clock-ticking.mp3")
             pygame.mixer.music.set_volume(0.4)
             pygame.mixer.music.play(-1)
 
@@ -118,7 +113,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                     json.dump(report, file, indent=4)
 
                 # open browser
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/stand_up.mp3")
+                pygame.mixer.music.load("monkeypomodoro/sounds/just_do_it.mp3")
                 pygame.mixer.music.set_volume(1)
                 pygame.mixer.music.play()
                 os.system("notify-send 'Time for a Break!'")
@@ -132,8 +127,8 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                 time.sleep(0.2)
                 webbrowser.open(spotify)
 
-                # break notification and waiting for the page
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/time_for_a_break.mp3")
+                # waiting for the page
+                pygame.mixer.music.load("monkeypomodoro/sounds/time_for_a_break.mp3")
                 pygame.mixer.music.set_volume(1)
                 pygame.mixer.music.play()
                 while pygame.mixer.music.get_busy():
@@ -144,13 +139,8 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                     print(f"\ralarm ends in {remaining_time_in_second}", end="")
                     # 1 second before rechecking the elapsed time
                     time.sleep(1)
-                time.sleep(1)
+                time.sleep(6)
                 print(f"\rBreak time!", end="")
-                time.sleep(2)
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/good-job_F6JFycP.mp3")
-                pygame.mixer.music.set_volume(0.2)
-                pygame.mixer.music.play()
-                print(f"\rおつかれさま", end="")
                 time.sleep(2)
                 pyautogui.press("space")
                 pyautogui.keyDown("ctrl")
@@ -173,7 +163,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                         time.sleep(1)
 
                 # short break ends
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/time_to_work.mp3")
+                pygame.mixer.music.load("monkeypomodoro/sounds/time_to_work.mp3")
                 pygame.mixer.music.set_volume(1)
                 pygame.mixer.music.play()
                 os.system("notify-send 'Time to Work!'")
@@ -219,7 +209,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                     json.dump(report, file, indent=4)
 
                     # open browser
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/stand_up.mp3")
+                pygame.mixer.music.load("monkeypomodoro/sounds/stand_up.mp3")
                 pygame.mixer.music.set_volume(1)
                 pygame.mixer.music.play()
                 os.system("notify-send 'Time for a Break!'")
@@ -231,7 +221,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                 webbrowser.open(spotify)
 
                 # loading the page
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/time_for_a_break.mp3")
+                pygame.mixer.music.load("monkeypomodoro/sounds/time_for_a_break.mp3")
                 pygame.mixer.music.set_volume(1)
                 pygame.mixer.music.play()
                 while pygame.mixer.music.get_busy():
@@ -242,13 +232,8 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                     print(f"\ralarm ends in {remaining_time_in_second}", end="")
                     # 1 second before rechecking the elapsed time
                     time.sleep(1)
-                time.sleep(1)
+                time.sleep(6)
                 print(f"\rBreak time!", end="")
-                time.sleep(3)
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/good-job_F6JFycP.mp3")
-                pygame.mixer.music.set_volume(0.2)
-                pygame.mixer.music.play()
-                print(f"\rおつおかれさま", end="")
                 time.sleep(2)
                 pyautogui.press("space")
                 pyautogui.keyDown("ctrl")
@@ -273,7 +258,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                         time.sleep(1)
 
                 # music etc
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/break_over.mp3")
+                pygame.mixer.music.load("monkeypomodoro/sounds/break_over.mp3")
                 pygame.mixer.music.set_volume(1)
                 pygame.mixer.music.play()
                 while pygame.mixer.music.get_busy():
@@ -284,7 +269,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                 webbrowser.open(spotify)
 
                 # loading the page
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/time_to_work.mp3")
+                pygame.mixer.music.load("monkeypomodoro/sounds/time_to_work.mp3")
                 pygame.mixer.music.set_volume(1)
                 pygame.mixer.music.play()
                 os.system("notify-send 'Time to Work!'")
@@ -303,7 +288,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                 pyautogui.keyDown("ctrl")
                 pyautogui.press("w")
                 pyautogui.keyUp("ctrl")
-                pygame.mixer.music.load("/home/bara/Music/Pomodoro/just_do_it.mp3")
+                pygame.mixer.music.load("monkeypomodoro/sounds/just_do_it.mp3")
                 pygame.mixer.music.set_volume(0.4)
                 pygame.mixer.music.play()
                 while pygame.mixer.music.get_busy():
