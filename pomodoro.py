@@ -326,7 +326,5 @@ Feature to add:
 - option to pause.
 - github-style heatmap data representation.
 
-Comments:
-now.date() returns only the date without any time information so strftime("%H") will always be "00". 
-instead use time.now() which returns a datetime object that contains both the date and time information
+Comments for commit:
 """
