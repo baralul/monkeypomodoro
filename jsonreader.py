@@ -1,13 +1,13 @@
 import json
 
 
-activity = ""
-year = ""
-month = ""
-week = ""
-date = ""
-day = ""
-hour = ""
+activity = "any"
+year = "any"
+month = "any"
+week = "any"
+date = "any"
+day = "any"
+hour = "any"
 
 
 def calculate_activity_duration(act="any", yea="any", mon="any", wee="any", dt="any", dy="any", hou="any"):
