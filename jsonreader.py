@@ -1,7 +1,16 @@
 import json
 
 
-def calculate_activity_duration(activity="any", year="any", month="any", week="any", date="any", day="any", hour="any"):
+activity = ""
+year = ""
+month = ""
+week = ""
+date = ""
+day = ""
+hour = ""
+
+
+def calculate_activity_duration(act="any", yea="any", mon="any", wee="any", dt="any", dy="any", hou="any"):
     # read data from a JSON file
     with open("pomodoro_report.json", "r") as f:
         data = json.load(f)
@@ -14,14 +23,14 @@ def calculate_activity_duration(activity="any", year="any", month="any", week="a
         # check if all the required key-value pairs are present in the dictionary
         if all(key in d for key in ["activity", "duration", "year", "month", "week", "date", "day", "hour"]):
             # check if the values for year, month, date, day, and hour match the specified values or "any"
-            if (d["year"] == year or year == "any") and \
-               (d["month"] == month or month == "any") and \
-               (d["week"] == week or week == "any") and \
-               (d["date"] == date or date == "any") and \
-               (d["day"] == day or day == "any") and \
-               (d["hour"] == hour or hour == "any"):
+            if (d["year"] == yea or yea == "any") and \
+               (d["month"] == mon or mon == "any") and \
+               (d["week"] == wee or wee == "any") and \
+               (d["date"] == dt or dt == "any") and \
+               (d["day"] == dy or dy == "any") and \
+               (d["hour"] == hou or hou == "any"):
                 # check if the activity matches the specified activity or "any"
-                if activity == "any" or d["activity"] == activity:
+                if act == "any" or d["activity"] == act:
                     # get the activity and duration values
                     activity_name = d["activity"]
                     duration = d["duration"]
@@ -35,13 +44,10 @@ def calculate_activity_duration(activity="any", year="any", month="any", week="a
     return activity_duration
 
 
-print(calculate_activity_duration(activity="any",
-                                  year="any",
-                                  month="any",
-                                  week="any",
-                                  date="any",
-                                  day="any",
-                                  hour="any"))
+output = (calculate_activity_duration(act=activity, yea=year, mon=month, wee=week, dt=date, dy=day, hou=hour))
+
+print(output)
+
 
 """
 or 
