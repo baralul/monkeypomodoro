@@ -313,7 +313,8 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                 time.sleep(60)
 
 
-# "insert_a_website_url"
+
+#  tab to open instead of monkeytype in short break
 custom_tab = "file:///home/bara/Documents/Guitar%20stuff/eddie%20van%20der%20meer/learned/Ed_Sheeran_-_Perfect.pdf"
 none = "none"
 pomodoro(25, 5, 25, 2, none)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"link",)
@@ -325,6 +326,7 @@ To fix:
 Feature to add:
 - option to pause.
 - github-style heatmap data representation.
+- add additional custom tab for the long break and slap todoist on it
 
 Comments for commit:
 """
