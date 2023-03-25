@@ -16,7 +16,8 @@ def signal_handler():  # (signum, frame) < read more about this
     pass
 
 
-def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, number_of_cycle, custom_tab1):
+def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, number_of_cycle, custom_tab1,
+             custom_tab2):
 
     # Configuration I guess
     spotify = "https://open.spotify.com/"
@@ -239,6 +240,11 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                 pyautogui.keyDown("ctrl")
                 pyautogui.press("tab")
                 pyautogui.keyUp("ctrl")
+                time.sleep(0.2)
+                if custom_tab2 == "none":
+                    pass
+                else:
+                    webbrowser.open_new(custom_tab2)
 
                 # end of cycles (long break)
                 print(f"\r{len(tasks)} Tasks have been completed:")
@@ -257,7 +263,7 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                         # 1 second before rechecking the elapsed time
                         time.sleep(1)
 
-                # music etc
+                # long break ends
                 pygame.mixer.music.load("monkeypomodoro/sounds/break_over.mp3")
                 pygame.mixer.music.set_volume(1)
                 pygame.mixer.music.play()
@@ -313,11 +319,12 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                 time.sleep(60)
 
 
-
-#  tab to open instead of monkeytype in short break
-custom_tab = "file:///home/bara/Documents/Guitar%20stuff/eddie%20van%20der%20meer/learned/Ed_Sheeran_-_Perfect.pdf"
+#  tab to open in short break (replaces monkeytype)
+custom_tab_short = "insert_page_url_here"
+#  tab to open in long break
+custom_tab_long = "insert_page_url_here"
 none = "none"
-pomodoro(25, 5, 25, 2, none)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"link",)
+pomodoro(25, 5, 25, 2, none, none)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"link",)
 
 """
 To fix:
@@ -326,7 +333,6 @@ To fix:
 Feature to add:
 - option to pause.
 - github-style heatmap data representation.
-- add additional custom tab for the long break and slap todoist on it
 
 Comments for commit:
 """
