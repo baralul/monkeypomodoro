@@ -333,6 +333,7 @@ To fix:
 Feature to add:
 - option to pause.
 - github-style heatmap data representation.
+- fork version into two where I can turn one to my liking and the other as general version 
 
 Comments for commit:
 """
