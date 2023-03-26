@@ -329,11 +329,13 @@ pomodoro(25, 5, 25, 2, none, none)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"li
 """
 To fix:
 - nothing to fix
+- don't work quite well, maybe add some delay
 
 Feature to add:
 - option to pause.
 - github-style heatmap data representation.
 - fork version into two where I can turn one to my liking and the other as general version 
+- add when the time when it starts and when it ends to json
 
 Comments for commit:
 """
