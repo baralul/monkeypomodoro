@@ -104,12 +104,14 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                         report = json.load(file)
                 except json.decoder.JSONDecodeError:
                     report = []
-                hour = now.time().strftime("%H")  # %h gives the abbreviated month name for some reason
+
+                # %h gives the abbreviated month. %H gives hour
+                finished_time = now.time().strftime("%H") + ":" + now.time().strftime("%M")
                 date = now.date().strftime("%d")
                 month = now.date().strftime("%m")
                 y, w, dy = now.isocalendar()
                 report.append({"activity": tasks[-1], "duration": m, "year": y, "month": month, "week": w, "date": date,
-                               "day": dy, "hour": hour})
+                               "day": dy, "finished time": finished_time})
                 with open("pomodoro_report.json", "w") as file:
                     json.dump(report, file, indent=4)
 
@@ -200,12 +202,14 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                         report = json.load(file)
                 except json.decoder.JSONDecodeError:
                     report = []
-                hour = now.time().strftime("%H")  # %h gives the abbreviated month name for some reason
+
+                # %h gives the abbreviated month. %H gives hour
+                finished_time = now.time().strftime("%H") + ":" + now.time().strftime("%M")
                 date = now.date().strftime("%d")
                 month = now.date().strftime("%m")
                 y, w, dy = now.isocalendar()
                 report.append({"activity": tasks[-1], "duration": m, "year": y, "month": month, "week": w, "date": date,
-                               "day": dy, "hour": hour})
+                               "day": dy, "hour": finished_time})
                 with open("pomodoro_report.json", "w") as file:
                     json.dump(report, file, indent=4)
 
@@ -335,7 +339,6 @@ Feature to add:
 - option to pause.
 - github-style heatmap data representation.
 - fork version into two where i can turn one to my liking and the other as general version 
-- add time when it starts and when it ends to json instead of hour
 
 Comments for commit:
 """
