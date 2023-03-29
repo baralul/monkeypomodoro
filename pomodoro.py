@@ -333,7 +333,7 @@ pomodoro(25, 5, 25, 2, none, none)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"li
 """
 To fix:
 - nothing to fix
-- don't work quite well, maybe add some delay
+- it does work but it opens it at the END of the long break instead of at the START of it
 
 Feature to add:
 - option to pause.
