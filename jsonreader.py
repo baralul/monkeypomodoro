@@ -8,9 +8,10 @@ week = "any"
 date = "any"
 day = "any"
 hour = "any"
+minute = "any"
 
 
-def calculate_activity_duration(act="any", yea="any", mon="any", wee="any", dt="any", dy="any", hou="any"):
+def calculate_activity_duration(act="any", yea="any", mon="any", wee="any", dt="any", dy="any", hou="any", mn="any"):
     # read data from a JSON file
     with open("pomodoro_report.json", "r") as f:
         data = json.load(f)
@@ -21,14 +22,15 @@ def calculate_activity_duration(act="any", yea="any", mon="any", wee="any", dt="
     # loop through each dictionary in the list of data
     for d in data:
         # check if all the required key-value pairs are present in the dictionary
-        if all(key in d for key in ["activity", "duration", "year", "month", "week", "date", "day", "hour"]):
+        if all(key in d for key in ["activity", "duration", "year", "month", "week", "date", "day", "hour", "minute"]):
             # check if the values for year, month, date, day, and hour match the specified values or "any"
             if (d["year"] == yea or yea == "any") and \
                (d["month"] == mon or mon == "any") and \
                (d["week"] == wee or wee == "any") and \
                (d["date"] == dt or dt == "any") and \
                (d["day"] == dy or dy == "any") and \
-               (d["hour"] == hou or hou == "any"):
+               (d["hour"] == hou or hou == "any") and \
+               (d["minute"] == mn or mn == "any"):
                 # check if the activity matches the specified activity or "any"
                 if act == "any" or d["activity"] == act:
                     # get the activity and duration values

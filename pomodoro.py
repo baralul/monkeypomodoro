@@ -106,12 +106,13 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                     report = []
 
                 # %h gives the abbreviated month. %H gives hour
-                finished_time = now.time().strftime("%H") + ":" + now.time().strftime("%M")
+                minute = now.time().strftime("%M")
+                hour = now.time().strftime("%H")
                 date = now.date().strftime("%d")
                 month = now.date().strftime("%m")
                 y, w, dy = now.isocalendar()
                 report.append({"activity": tasks[-1], "duration": m, "year": y, "month": month, "week": w, "date": date,
-                               "day": dy, "finished time": finished_time})
+                               "day": dy, "hour": hour, "minute": minute})
                 with open("pomodoro_report.json", "w") as file:
                     json.dump(report, file, indent=4)
 
@@ -204,12 +205,13 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
                     report = []
 
                 # %h gives the abbreviated month. %H gives hour
-                finished_time = now.time().strftime("%H") + ":" + now.time().strftime("%M")
+                minute = now.time().strftime("%M")
+                hour = now.time().strftime("%H")
                 date = now.date().strftime("%d")
                 month = now.date().strftime("%m")
                 y, w, dy = now.isocalendar()
                 report.append({"activity": tasks[-1], "duration": m, "year": y, "month": month, "week": w, "date": date,
-                               "day": dy, "hour": finished_time})
+                               "day": dy, "hour": hour, "minute": minute})
                 with open("pomodoro_report.json", "w") as file:
                     json.dump(report, file, indent=4)
 
@@ -333,7 +335,6 @@ pomodoro(25, 5, 25, 2, none, none)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"li
 """
 To fix:
 - nothing to fix
-- it does work but it opens it at the END of the long break instead of at the START of it
 
 Feature to add:
 - option to pause.
