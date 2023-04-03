@@ -16,8 +16,7 @@ def signal_handler():  # (signum, frame) < read more about this
     pass
 
 
-def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, number_of_cycle, custom_tab1,
-             custom_tab2):
+def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, custom_tab1, custom_tab2):
 
     # Configuration I guess
     spotify = "https://open.spotify.com/"
@@ -26,9 +25,10 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, nu
     duration = duration_in_minute * 60
     short_break = short_break_in_minute * 60
     long_break = long_break_in_minute * 60
-    cycles = number_of_cycle
     tasks = []
     suspend_in = 60
+
+    cycles = int(input("Number of session: "))
 
     for i in range(cycles):
 
@@ -330,7 +330,7 @@ custom_tab_short = "insert_page_url_here"
 #  tab to open in long break
 custom_tab_long = "insert_page_url_here"
 none = "none"
-pomodoro(25, 5, 25, 2, none, none)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"link",)
+pomodoro(25, 5, 25, none, custom_tab_long)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"link",)
 
 """
 To fix:
