@@ -28,7 +28,13 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, cu
     tasks = []
     suspend_in = 60
 
-    cycles = int(input("Number of session: "))
+    #  prompting the user to enter the number of sessions
+    while True:
+        try:
+            cycles = int(input("Number of session: "))
+            break
+        except ValueError:
+            print("Please enter an integer")
 
     for i in range(cycles):
 
