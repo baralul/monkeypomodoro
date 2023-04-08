@@ -16,17 +16,7 @@ def signal_handler():  # (signum, frame) < read more about this
     pass
 
 
-def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, custom_tab1, custom_tab2):
-
-    # Configuration I guess
-    spotify = "https://open.spotify.com/"
-    monkey_type = "https://monkeytype.com/"
-    google_calendar = "https://calendar.google.com/calendar/u/0/r/week"
-    duration = duration_in_minute * 60
-    short_break = short_break_in_minute * 60
-    long_break = long_break_in_minute * 60
-    tasks = []
-    suspend_in = 60
+def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_tab2):
 
     #  prompting the user to enter the number of sessions
     while True:
@@ -35,6 +25,23 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, cu
             break
         except ValueError:
             print("Please enter an integer")
+
+    while True:
+        try:
+            duration = int(input("Duration of session in minute: "))
+            break
+        except ValueError:
+            print("Please enter an integer")
+
+    # Configuration I guess
+    spotify = "https://open.spotify.com/"
+    monkey_type = "https://monkeytype.com/"
+    google_calendar = "https://calendar.google.com/calendar/u/0/r/week"
+    duration_in_minute = duration * 60
+    short_break = short_break_in_minute * 60
+    long_break = long_break_in_minute * 60
+    tasks = []
+    suspend_in = 60
 
     for i in range(cycles):
 
@@ -85,11 +92,11 @@ def pomodoro(duration_in_minute, short_break_in_minute, long_break_in_minute, cu
             start_time = time.time()
             while True:
                 elapsed_time = time.time() - start_time
-                if elapsed_time >= duration:
+                if elapsed_time >= duration_in_minute:
                     print(f"\rStarting short break #{i + 1}/{cycles}", end="")
                     break
                 else:
-                    remaining_time = duration - elapsed_time
+                    remaining_time = duration_in_minute - elapsed_time
                     minutes, seconds = divmod(int(remaining_time), 60)
                     print(f"\rSession ends in {minutes:02d}:{seconds:02d}", end="")
                     # 1 second before rechecking the elapsed time
@@ -336,7 +343,7 @@ custom_tab_short = "insert_page_url_here"
 #  tab to open in long break
 custom_tab_long = "insert_page_url_here"
 none = "none"
-pomodoro(25, 5, 25, none, custom_tab_long)  # (25, 4.6, 29, 4)/(25, 5, 25, 4, "none"/"link",)
+pomodoro(5, 25, none, custom_tab_long)  # (5/4.6, 25/29, "none"/"link1", "none"/"link2")
 
 """
 To fix:
