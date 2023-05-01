@@ -27,15 +27,15 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
         data = json.load(f)
 
     # read the number of minutes done today
-    todayminute = 0
+    totalminute = 0
     for d in data:
         if all(key in d for key in ["year", "month", "date"]):
             if d["year"] == y and \
                     d["month"] == month and \
                     d["date"] == date:
-                duration = d["duration"]
-                todayminute += duration
-    print(f"{todayminute}/250 Minutes done today!")
+                todayduration = d["duration"]
+                totalminute += todayduration
+    print(f"{totalminute}/250 Minutes done today!")
 
     #  prompting the user to enter the number of sessions
     while True:
@@ -56,7 +56,7 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
     spotify = "https://open.spotify.com/"
     monkey_type = "https://monkeytype.com/"
     google_calendar = "https://calendar.google.com/calendar/u/0/r/week"
-    duration_in_minute = duration * 60
+    sixty_times_duration = duration * 60
     short_break = short_break_in_minute * 60
     long_break = long_break_in_minute * 60
     tasks = []
@@ -84,7 +84,7 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
         signal.signal(signal.SIGALRM, signal_handler)
         signal.alarm(suspend_in)  # Set the alarm for {suspend_in} seconds
         try:
-            task = input(f"\r   For the next {duration_in_minute} minutes I will be working on: ")
+            task = input(f"\r   For the next {duration} minutes I will be working on: ")
             signal.alarm(0)  # Cancel the alarm
             pygame.mixer.music.stop()
             tasks.append(task)
@@ -111,11 +111,11 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
             start_time = time.time()
             while True:
                 elapsed_time = time.time() - start_time
-                if elapsed_time >= duration_in_minute:
+                if elapsed_time >= sixty_times_duration:
                     print(f"\rStarting short break #{i + 1}/{cycles}", end="")
                     break
                 else:
-                    remaining_time = duration_in_minute - elapsed_time
+                    remaining_time = sixty_times_duration - elapsed_time
                     minutes, seconds = divmod(int(remaining_time), 60)
                     print(f"\rSession ends in {minutes:02d}:{seconds:02d}", end="")
                     # 1 second before rechecking the elapsed time
@@ -126,7 +126,7 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
             if i + 1 < cycles:
                 now = datetime.datetime.now()
                 s = round(now.second)
-                m = duration_in_minute
+                m = duration
                 at = f"     \r\"{tasks[-1]}\" Finished at [{now.date()} {now.hour}:{now.minute}:{s}] " \
                      f"Duration: [{m}] Minutes"
                 print(at)
@@ -226,7 +226,7 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
             else:
                 now = datetime.datetime.now()
                 s = round(now.second)
-                m = duration_in_minute
+                m = duration
                 at = f"     \r\"{tasks[-1]}\" Finished at [{now.date()} {now.hour}:{now.minute}:{s}] " \
                      f"Duration: [{m}] Minutes"
                 print(at)
