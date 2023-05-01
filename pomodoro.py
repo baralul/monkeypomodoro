@@ -29,12 +29,13 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
     # read the number of minutes done today
     todayminute = 0
     for d in data:
-        if d["year"] == y and \
-                d["month"] == month and \
-                d["date"] == date:
-            duration = d["duration"]
-            todayminute += duration
-    print(f"{todayminute} /250 Minutes done today!")
+        if all(key in d for key in ["year", "month", "date"]):
+            if d["year"] == y and \
+                    d["month"] == month and \
+                    d["date"] == date:
+                duration = d["duration"]
+                todayminute += duration
+    print(f"{todayminute}/250 Minutes done today!")
 
     #  prompting the user to enter the number of sessions
     while True:
