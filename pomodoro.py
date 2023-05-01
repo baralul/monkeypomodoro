@@ -98,7 +98,7 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
                     break
                 else:
                     remaining_time = 3 - round(elapsed_time)
-                    print(f"\rstarting in {remaining_time}", end="")
+                    print(f"\rStarting in {remaining_time}", end="")
                     # 1 second before rechecking the elapsed time
                     time.sleep(1)
 
