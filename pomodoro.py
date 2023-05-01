@@ -17,6 +17,24 @@ def signal_handler():  # (signum, frame) < read more about this
 
 
 def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_tab2):
+    # get current time
+    now = datetime.datetime.now()
+    date = now.date().strftime("%d")
+    month = now.date().strftime("%m")
+    y, w, dy = now.isocalendar()
+
+    with open("pomodoro_report.json", "r") as f:
+        data = json.load(f)
+
+    # read the number of minutes done today
+    todayminute = 0
+    for d in data:
+        if d["year"] == y and \
+                d["month"] == month and \
+                d["date"] == date:
+            duration = d["duration"]
+            todayminute += duration
+    print(f"{todayminute} /250 Minutes done today!")
 
     #  prompting the user to enter the number of sessions
     while True:
@@ -65,13 +83,13 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
         signal.signal(signal.SIGALRM, signal_handler)
         signal.alarm(suspend_in)  # Set the alarm for {suspend_in} seconds
         try:
-            task = input(f"\rFor the next {duration_in_minute} minutes I will work on: ")
+            task = input(f"\r   For the next {duration_in_minute} minutes I will be working on: ")
             signal.alarm(0)  # Cancel the alarm
             pygame.mixer.music.stop()
             tasks.append(task)
 
             # Starting cycle
-            print(f"\rStarting pomodoro #{i + 1}/{cycles}")
+            print(f"\r  Starting pomodoro #{i + 1}/{cycles}")
             start_time = time.time()
             while True:
                 elapsed_time = time.time() - start_time
@@ -108,7 +126,8 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
                 now = datetime.datetime.now()
                 s = round(now.second)
                 m = duration_in_minute
-                at = f"\r\"{tasks[-1]}\" Finished at [{now.date()} {now.hour}:{now.minute}:{s}] Duration: [{m}] Minutes"
+                at = f"     \r\"{tasks[-1]}\" Finished at [{now.date()} {now.hour}:{now.minute}:{s}] " \
+                     f"Duration: [{m}] Minutes"
                 print(at)
 
                 # report
@@ -207,7 +226,8 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
                 now = datetime.datetime.now()
                 s = round(now.second)
                 m = duration_in_minute
-                at = f"\r\"{tasks[-1]}\" Finished at [{now.date()} {now.hour}:{now.minute}:{s}] Duration: [{m}] Minutes"
+                at = f"     \r\"{tasks[-1]}\" Finished at [{now.date()} {now.hour}:{now.minute}:{s}] " \
+                     f"Duration: [{m}] Minutes"
                 print(at)
 
                 # report
