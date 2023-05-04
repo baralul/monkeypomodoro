@@ -312,7 +312,7 @@ def pomodoro(short_break_in_minute, long_break_in_minute, custom_tab1, custom_ta
                     time.sleep(1)
                 webbrowser.open_new(google_calendar)
                 time.sleep(0.2)
-                webbrowser.open(spotify)
+                webbrowser.open("https://open.spotify.com/collection/podcasts")
 
                 # loading the page
                 pygame.mixer.music.load("monkeypomodoro/sounds/time_to_work.mp3")
